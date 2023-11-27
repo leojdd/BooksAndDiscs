@@ -1,4 +1,7 @@
-# books-and-discs
+# Books and Discs
+
+## Catalog your books and discs by shelf, organize and find them easily
+## Catalogue seus livros e discos por prateleira, organize e encontre-os de forma fácil
 
 ## This project was writed using NodeJS / TypeScript / MongoDB
  
