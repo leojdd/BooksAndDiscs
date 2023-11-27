@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Item, ItemDocument } from '../entities/item';
+import { EditItemDTO } from '../dto/edit-item.dto';
 
 @Injectable()
 export class ItemRepository {
@@ -17,8 +18,12 @@ export class ItemRepository {
   async find(name: string, description: string, shelf: string, type: 'DISC' | 'BOOK'): Promise<Array<Item>> {
     let query = { }
 
-    if (name || description) {
-      Object.assign(query, { $or: [{ name: { '$regex': name, $options: 'i' } }, { description: { '$regex': description, $options: 'i' } }] })
+    if (name) {
+      Object.assign(query, { name: { '$regex': name, $options: 'i' } })
+    }
+
+    if (description) {
+      Object.assign(query, { description: { '$regex': description, $options: 'i' } })
     }
 
     if (shelf) {
@@ -34,5 +39,24 @@ export class ItemRepository {
 
   async delete(id: string): Promise<void> {
     await this.itemModel.deleteOne({ _id: id });
+  }
+
+  async updateOne(editItemDTO: EditItemDTO): Promise<boolean> {
+    let obj = await this.itemModel.findByIdAndUpdate(
+      {
+        _id: editItemDTO.id
+      },
+      {
+        $set:
+        {
+          name: editItemDTO.name,
+          description: editItemDTO.description,
+          shelf: editItemDTO.shelf,
+          type: editItemDTO.type
+        }
+      }
+    )
+
+    return obj != null
   }
 }

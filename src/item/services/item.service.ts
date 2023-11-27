@@ -5,6 +5,7 @@ import { ItemRepository } from '../repositories/item.repository';
 import { DeleteItemDTO } from '../dto/delete-item.dto.ts';
 import { ListItemDTO } from '../dto/list-item.dto';
 import { Item } from '../entities/item';
+import { EditItemDTO } from '../dto/edit-item.dto';
 
 @Injectable()
 export class ItemService {
@@ -42,5 +43,15 @@ export class ItemService {
 
   async list(listItemDTO: ListItemDTO): Promise<Array<Item>> {
     return await this.itemRepository.find(listItemDTO.name, listItemDTO.description, listItemDTO.shelf, listItemDTO.type)
+  }
+
+  async edit(editItemDTO: EditItemDTO): Promise<string> {
+    try {
+      let edited = await this.itemRepository.updateOne(editItemDTO)
+      return edited ? `Your item was edited` : `Item not found`
+    } catch (err) {
+      this.logger.error(err);
+      return 'Erro at try edit your item'
+    }
   }
 }

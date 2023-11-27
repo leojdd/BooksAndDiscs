@@ -5,6 +5,7 @@ import { CreateItemDTO } from '../dto/create-item.dto';
 import { DeleteItemDTO } from '../dto/delete-item.dto.ts';
 import { ListItemDTO } from '../dto/list-item.dto';
 import { Item } from '../entities/item';
+import { EditItemDTO } from '../dto/edit-item.dto';
 
 @Controller()
 export class ItemController {
@@ -18,6 +19,11 @@ export class ItemController {
   @Delete('delete')
   async delete(@Body() deleteItemDTO: DeleteItemDTO): Promise<string> {
     return await this.itemService.delete(deleteItemDTO);
+  }
+
+  @Put('edit')
+  async edit(@Body() editItemDTO: EditItemDTO): Promise<string> {
+    return await this.itemService.edit(editItemDTO);
   }
 
   @Get('list')
