@@ -6,10 +6,13 @@ This project has four end-points
 
 Create / Edit / Delete / List
 
-Create your item with name: string, description: string, shelf: string and type: 'BOOK' | 'DISC'
-Edit your item with name: string, description: string, shelf: string and type: 'BOOK' | 'DISC'
-List your items finding by name: string, description: string, shelf: string OR type: 'BOOK' | 'DISC'
-Delete your item with id: string
+**Create your item with name**: string, description: string, shelf: string and type: 'BOOK' | 'DISC'
+
+**Edit your item with name**: string, description: string, shelf: string and type: 'BOOK' | 'DISC'
+
+**List your items finding by name**: string, description: string, shelf: string OR type: 'BOOK' | 'DISC'
+
+**Delete your item with id**: string
 
 ## Create
 ![Create BOOK](https://github.com/leojdd/booksanddiscs/assets/47505789/2307b5ed-6971-4ea0-8499-a814e1a5e59a)
